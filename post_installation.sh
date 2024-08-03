@@ -4,6 +4,7 @@ sudo snap install --classic code
 sudo snap install --classic slack 
 sudo snap install notion-snap 
 sudo apt instal 
+sudo apt install python3-pip -y
 
 # Descargue la clave GPG de Docker y guárdela en /usr/share/keyrings
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
