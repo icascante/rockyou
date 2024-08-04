@@ -50,6 +50,7 @@ echo "Archivo guardado como: $output_file"
 
 sudo dpkg -i "$output_file"
 
+# code --list-extensions
 extensions=(
     "esbenp.prettier-vscode"
     "dbaeumer.vscode-eslint"
@@ -61,6 +62,7 @@ extensions=(
     "ms-python.debugpy"
     "ms-python.python"
     "ms-python.vscode-pylance"
+    "pkief.material-icon-theme"
 )
 
 for extension in "${extensions[@]}"; do
