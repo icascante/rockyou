@@ -1,7 +1,8 @@
 sudo apt update && apt upgrade -y
 
 sudo snap install --classic code 
-sudo snap install --classic slack 
+sudo snap install --classic slack
+sudo apt install chromium-browser -y 
 sudo snap install notion-snap 
 sudo apt instal 
 sudo apt install python3-pip -y
