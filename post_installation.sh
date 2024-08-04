@@ -23,6 +23,7 @@ sudo usermod -aG docker ${USER}
 sudo apt-get install open-vm-tools-desktop -y 
 sudo apt-get install jq -y
 
+# Instalacion de Maltego
 # URL de la API
 api_url="https://downloads.maltego.com/maltego-v4/info.json"
 
@@ -50,6 +51,36 @@ echo "Archivo descargado desde: $download_url"
 echo "Archivo guardado como: $output_file"
 
 sudo dpkg -i "$output_file"
+
+#Instalacion de MongoDB Compass
+
+# URL de la página de instalación de MongoDB Compass
+url="https://www.mongodb.com/docs/compass/current/install/"
+
+# Descargar la página
+page=$(wget -qO- "$url")
+
+# Extraer el enlace de descarga del archivo .deb
+download_url=$(echo "$page" | grep -oP 'https://downloads.mongodb.com/compass/mongodb-compass_[0-9.]+_amd64.deb' | head -n 1)
+
+# Comprobar si se ha encontrado la URL de descarga
+if [ -z "$download_url" ]; then
+    echo "No se pudo encontrar la URL de descarga."
+    exit 1
+fi
+
+# Directorio de descargas del usuario actual
+download_dir="$HOME/Downloads"
+
+# Descargar el archivo .deb
+wget "$download_url" -O "$download_dir/mongodb-compass.deb"
+
+# Instalar el archivo .deb
+sudo dpkg -i "$download_dir/mongodb-compass.deb"
+
+# Resolver dependencias si es necesario
+sudo apt-get install -f
+
 
 # code --list-extensions
 extensions=(
