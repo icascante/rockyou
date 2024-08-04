@@ -17,6 +17,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Instale Docker
 sudo apt install docker-ce -y
+sudo apt install python3.12-venv -y
 
 sudo usermod -aG docker ${USER} 
 
@@ -38,6 +39,9 @@ if [ -z "$download_url" ]; then
     echo "No se encontró una URL para 'os': 'linux' y 'file-type': '.deb'"
     exit 1
 fi
+
+# Directorio de descargas del usuario actual
+download_dir="$HOME/Downloads"
 
 # Definir el nombre del archivo de salida
 output_file="Maltego.v4.7.0.deb"
@@ -68,9 +72,6 @@ if [ -z "$download_url" ]; then
     echo "No se pudo encontrar la URL de descarga."
     exit 1
 fi
-
-# Directorio de descargas del usuario actual
-download_dir="$HOME/Downloads"
 
 # Descargar el archivo .deb
 wget "$download_url" -O "$download_dir/mongodb-compass.deb"
