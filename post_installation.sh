@@ -8,6 +8,8 @@ sudo snap install notion-snap
 sudo snap install postman 
 sudo apt instal 
 sudo apt install python3-pip -y
+sudo apt install filezilla -y
+
 
 # Descargue la clave GPG de Docker y guárdela en /usr/share/keyrings
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
