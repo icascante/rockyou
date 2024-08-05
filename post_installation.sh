@@ -25,6 +25,9 @@ sudo apt-get install open-vm-tools-desktop -y
 sudo apt-get install jq -y
 
 # Instalacion de Maltego
+#!/bin/bash
+
+# Instalación de Maltego
 # URL de la API
 api_url="https://downloads.maltego.com/maltego-v4/info.json"
 
@@ -44,16 +47,19 @@ fi
 download_dir="$HOME/Downloads"
 
 # Definir el nombre del archivo de salida
-output_file="Maltego.v4.7.0.deb"
+output_file="$download_dir/Maltego.v4.7.0.deb"
 
 # Descargar el archivo usando wget con sobrescritura automática
 wget -O "$output_file" "$download_url"
 
+# Asegurarse de que el archivo sea ejecutable
 chmod +x "$output_file"
+
 # Mostrar la URL descargada y el nombre del archivo de salida
 echo "Archivo descargado desde: $download_url"
 echo "Archivo guardado como: $output_file"
 
+# Instalar el archivo descargado
 sudo dpkg -i "$output_file"
 
 #Instalacion de MongoDB Compass
@@ -212,6 +218,15 @@ for repo_url in "${repos[@]}"; do
         fi
     fi
 done
+ 
 
+# Cambiar la distribución del teclado a español (latinoamericano) temporalmente
+setxkbmap -layout latam
+
+# Editar el archivo de configuración del teclado para que el cambio sea permanente
+sudo sed -i 's/XKBLAYOUT=.*/XKBLAYOUT="latam"/' /etc/default/keyboard
+
+# Reconfigurar el teclado para aplicar los cambios
+sudo dpkg-reconfigure -f noninteractive keyboard-configuration
 
 
