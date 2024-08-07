@@ -144,10 +144,7 @@ sudo apt-get install gnome-shell-extension-dash-to-dock -y
 sudo apt-get install dconf-editor
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-gsettings set org.gnome.shell.extensions.dash-to-dock center true
-gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
-gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
-gsettings set org.gnome.shell.extensions.dash-to-dock unity-backlit-items true
+
 
 #!/bin/bash
 
