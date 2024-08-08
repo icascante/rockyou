@@ -139,6 +139,7 @@ for extension in "${extensions[@]}"; do
 done
 
 sudo apt install default-jre -y
+sudo apt install default-jdk -y
  
 sudo apt-get install gnome-shell-extension-dash-to-dock -y
 sudo apt-get install dconf-editor
