@@ -9,6 +9,7 @@ sudo snap install postman
 sudo apt instal 
 sudo apt install python3-pip -y
 sudo apt install filezilla -y
+sudo apt-get install shutter -y
 
 
 # Descargue la clave GPG de Docker y guárdela en /usr/share/keyrings
