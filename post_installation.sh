@@ -195,6 +195,7 @@ extensions=(
     "trabpukcip.wolf"
     "xirider.livecode"
     "ziyasal.vscode-open-in-github"
+    "genieai.chatgpt-vscode"
 )
 
 for extension in "${extensions[@]}"; do
