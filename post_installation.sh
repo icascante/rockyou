@@ -89,6 +89,18 @@ wget "$download_url" -O "$download_dir/mongodb-compass.deb"
 # Instalar el archivo .deb
 sudo dpkg -i "$download_dir/mongodb-compass.deb"
 
+#Instalacion de helm
+file_download="$download_dir/get_helm.sh"
+
+# Descargar el archivo de script de Helm
+curl -fsSL -o "$file_download" https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+# Dar permisos de ejecución
+chmod 700 "$file_download"
+
+# Ejecutar el script
+"$file_download"
+
 # Resolver dependencias si es necesario
 sudo apt-get install -f 
 
@@ -219,5 +231,6 @@ sudo sed -i 's/XKBLAYOUT=.*/XKBLAYOUT="latam"/' /etc/default/keyboard
 
 # Reconfigurar el teclado para aplicar los cambios
 sudo dpkg-reconfigure -f noninteractive keyboard-configuration
+
 
 

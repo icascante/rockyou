@@ -1,22 +1,12 @@
 #!/bin/bash
 download_dir="$HOME/Downloads"
+file_download="$download_dir/get_helm.sh"
 
-base_url="https://www.scootersoftware.com"
-# URL de la página donde se encuentra el botón
-url="https://www.scootersoftware.com/download"
+# Descargar el archivo de script de Helm
+curl -fsSL -o "$file_download" https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 
-# Descargar el contenido de la página
-page=$(wget -qO- "$url")
+# Dar permisos de ejecución
+chmod 700 "$file_download"
 
-# Extraer el valor del href que contiene el texto "Debian"
-relative_href=$(echo $page | grep -oP '(?<=<a href=")[^"]*(?="[^>]*>Debian</a>)')
-echo "valor $relative_href"
-# Combinar la URL base con el href relativo
-
-full_url="${base_url}${relative_href}"
-echo "valor $full_url"
-wget "$full_url" -O "$download_dir/comper.deb"
-
-# Instalar el archivo .deb
-sudo dpkg -i "$download_dir/comper.deb" 
-sudo apt-get install -f -y
+# Ejecutar el script
+"$file_download"
