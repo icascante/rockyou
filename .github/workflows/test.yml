@@ -48,6 +48,9 @@ jobs:
   
       - name: Verify VPN connection
         run: curl ifconfig.me # Esto debería mostrar la IP del servidor VPN
+      
+      - name: Ping an IP address
+        run: ping -c 4 10.0.0.2
   
       - name: Your task behind VPN
         run: |
