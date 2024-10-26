@@ -34,3 +34,25 @@ jobs:
       
       - name: Decode OpenVPN config
         run: echo "${{ secrets.OPENVPN_CONFIG }}" | base64 -d > vpn-config.ovpn
+      
+      - name: Create authentication file
+        run: |
+          echo "${{ secrets.VPN_USERNAME }}" > auth.txt
+          echo "${{ secrets.VPN_PASSWORD }}" >> auth.txt
+  
+      - name: Update OpenVPN config to use auth file
+        run: echo "auth-user-pass auth.txt" >> vpn-config.ovpn
+  
+      - name: Start OpenVPN
+        run: sudo openvpn --config vpn-config.ovpn --daemon
+  
+      - name: Verify VPN connection
+        run: curl ifconfig.me # Esto debería mostrar la IP del servidor VPN
+  
+      - name: Your task behind VPN
+        run: |
+          # Aquí ejecutas los comandos que quieres que se realicen a través de la VPN
+          echo "Running tasks behind VPN..."
+        
+      - name: Stop OpenVPN
+        run: sudo killall openvpn
