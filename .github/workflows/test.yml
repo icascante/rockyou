@@ -33,7 +33,7 @@ jobs:
         run: echo "auth-user-pass auth.txt" >> vpn-config.ovpn
   
       - name: Start OpenVPN
-        run: sudo openvpn --config vpn-config.ovpn --daemon
+        run: sudo openvpn --config vpn-config.ovpn
   
       - name: Verificar conexión VPN (IP pública)
         run: curl ifconfig.me # Verifica si la IP cambia al conectarse a la VPN
