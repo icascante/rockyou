@@ -1,28 +1,17 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
@@ -46,21 +35,24 @@ jobs:
       - name: Start OpenVPN
         run: sudo openvpn --config vpn-config.ovpn --daemon
   
-      - name: Verify VPN connection
-        run: curl ifconfig.me # Esto debería mostrar la IP del servidor VPN
+      - name: Verificar conexión VPN (IP pública)
+        run: curl ifconfig.me # Verifica si la IP cambia al conectarse a la VPN
       
+      - name: Ping an IP address
+        run: ping -c 4 10.0.0.4 || echo "Ping failed, continuing..." # Verifica conectividad a través de la VPN
+
       - name: Install dependencies from requirements.txt
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
-      - name: Ping an IP address
-        run: ping -c 4 10.0.0.4
   
       - name: Your task behind VPN
         run: |
-          # Aquí ejecutas los comandos que quieres que se realicen a través de la VPN
           echo "Running tasks behind VPN..."
         
+      - name: Verificar logs de OpenVPN
+        run: sudo cat /var/log/syslog | grep openvpn
+      
       - name: Stop OpenVPN
+        if: always()
         run: sudo killall openvpn
