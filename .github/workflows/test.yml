@@ -49,6 +49,11 @@ jobs:
       - name: Verify VPN connection
         run: curl ifconfig.me # Esto debería mostrar la IP del servidor VPN
       
+      - name: Install dependencies from requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
       - name: Ping an IP address
         run: ping -c 4 10.0.0.4
   
