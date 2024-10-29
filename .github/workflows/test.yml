@@ -29,6 +29,11 @@ jobs:
           echo "${{ secrets.VPN_PASSWORD }}" >> auth.txt
           chmod 600 auth.txt 
           cat auth.txt 
+   
+      - name: Read authentication file
+        run: |
+            cat auth.txt 
+    
   
       - name: Update OpenVPN config to use auth file
         run: echo "auth-user-pass auth.txt" >> vpn-config.ovpn
